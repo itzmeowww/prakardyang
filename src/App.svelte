@@ -34,8 +34,8 @@
 <Head {title} {description} {url} />
 
 <main class="w-full h-screen flex flex-col justify-center items-center font-sans">
-  <h1 class="text-6xl  flex flex-col mb-10">
-    {`${hours}:${minutes.toLocaleString()} ประกาศยัง?!`}
+  <h1 class="text-6xl  flex flex-col mb-10 text-center">
+    {`${hours}:${minutes} ประกาศยัง?!`}
   </h1>
   <div class="flex justify-center items-center space-x-4 ">
     <div class="flex flex-col justify-center items-center">
