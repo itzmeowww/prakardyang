@@ -5,13 +5,10 @@
   import Head from "./lib/Head.svelte"
   import { Twitter } from "svelte-share-buttons-component"
 
-  const url = "https://single-page-svelte.vercel.app"
+  const url = "https://prakardyang.vercel.app"
   const title = "ประกาศยัง?!"
 
   const description = "ประกาศยัง?!"
-  const imageUrl =
-    "https://raw.githubusercontent.com/narze/timelapse/master/projects/single-page-svelte_home.png"
-  const gtagId = null
 
   import { onMount } from "svelte"
 
@@ -34,7 +31,7 @@
   })
 </script>
 
-<Head {title} {description} {url} {imageUrl} {gtagId} />
+<Head {title} {description} {url} />
 
 <main class="w-full h-screen flex flex-col justify-center items-center font-sans">
   <h1 class="text-6xl  flex flex-col mb-10">
