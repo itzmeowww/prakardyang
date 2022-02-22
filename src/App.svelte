@@ -1,32 +1,55 @@
 <script lang="ts">
   import "twind/shim"
   import { tw } from "twind"
-  import logo from "./assets/svelte.png"
+
   import Head from "./lib/Head.svelte"
-  import Kofi from "./lib/Kofi.svelte"
-  import Menu from "./lib/Menu.svelte"
-  import Social from "./lib/Social.svelte"
+  import { Twitter } from "svelte-share-buttons-component"
 
   const url = "https://single-page-svelte.vercel.app"
-  const title = "Single Page Svelte"
+  const title = "ประกาศยัง?!"
 
-  const menuItems = [{ name: "Github", url: "https://github.com/narze/single-page-svelte" }]
-
-  const description = "Build a single page app with Svelte, quickly."
+  const description = "ประกาศยัง?!"
   const imageUrl =
     "https://raw.githubusercontent.com/narze/timelapse/master/projects/single-page-svelte_home.png"
   const gtagId = null
+
+  import { onMount } from "svelte"
+
+  let time = new Date()
+
+  // these automatically update when `time`
+  // changes, because of the `$:` prefix
+  $: hours = time.getHours()
+  $: minutes = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes()
+  $: seconds = time.getSeconds()
+
+  onMount(() => {
+    const interval = setInterval(() => {
+      time = new Date()
+    }, 1000)
+
+    return () => {
+      clearInterval(interval)
+    }
+  })
 </script>
 
-<Kofi name="narze" label="Support Me" />
-<Menu items={menuItems} />
-<Social {url} {title} />
 <Head {title} {description} {url} {imageUrl} {gtagId} />
 
-<main class="w-full h-screen flex flex-col justify-center items-center">
-  <h1 class="text-6xl text-green-400 flex flex-col">
-    <span>Single</span><span>Page</span><span>Svelte</span>
+<main class="w-full h-screen flex flex-col justify-center items-center font-sans">
+  <h1 class="text-6xl  flex flex-col mb-10">
+    {`${hours}:${minutes.toLocaleString()} ประกาศยัง?!`}
   </h1>
+  <div class="flex justify-center items-center space-x-4 ">
+    <div class="flex flex-col justify-center items-center">
+      <Twitter class="h-10 w-10" text={`${hours}:${minutes} ยังไม่ประกาศ`} url={""} />
+      <p class="text-black">ยังไม่ประกาศ</p>
+    </div>
+    <div class="flex flex-col justify-center items-center">
+      <Twitter class="h-10 w-10" text={`${hours}:${minutes} ประกาศแล้ว`} url={""} />
+      <p class="text-black">ประกาศแล้ว</p>
+    </div>
+  </div>
 </main>
 
 <style>
